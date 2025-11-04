@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { CheckCircle, Film, Languages, Share2, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
@@ -25,6 +25,37 @@ const features = [
     title: 'Exporte e Compartilhe',
     description: 'Exporte facilmente seus resumos para PDF, DOCX e compartilhe por vários canais.',
   },
+];
+
+const plans = [
+  {
+    name: 'Gratuito',
+    price: 'R$0',
+    priceDescription: 'para sempre',
+    description: 'Para quem está começando e quer experimentar os recursos principais.',
+    features: [
+      '5 transcrições por mês (até 10 min/cada)',
+      'Resumos estruturados',
+      'Detecção de idioma',
+      'Suporte via comunidade',
+    ],
+    buttonText: 'Comece Agora',
+    buttonVariant: 'outline' as const,
+  },
+  {
+    name: 'Pro',
+    price: 'R$40',
+    priceDescription: 'por mês',
+    description: 'Para usuários avançados que precisam de mais limites e recursos.',
+    features: [
+      'Transcrições ilimitadas',
+      'Uploads de arquivos de até 1GB',
+      'Resumos executivos e tipos de resumo',
+      'Suporte prioritário por email',
+    ],
+    buttonText: 'Atualize para Pro',
+    buttonVariant: 'default' as const,
+  }
 ];
 
 export default function LandingPage() {
@@ -77,6 +108,46 @@ export default function LandingPage() {
                   <CardContent>
                     <p className="text-muted-foreground">{feature.description}</p>
                   </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="pricing" className="py-20 lg:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold font-headline">Planos Flexíveis para Todos</h2>
+              <p className="max-w-xl mx-auto text-muted-foreground mt-2">
+                Comece de graça e atualize quando precisar de mais poder.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {plans.map((plan) => (
+                <Card key={plan.name} className={`flex flex-col ${plan.name === 'Pro' ? 'border-primary' : ''}`}>
+                  <CardHeader>
+                    <CardTitle className="font-headline text-2xl">{plan.name}</CardTitle>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-4xl font-extrabold">{plan.price}</span>
+                      <span className="text-muted-foreground">{plan.priceDescription}</span>
+                    </div>
+                    <CardDescription>{plan.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex-grow space-y-4">
+                    <ul className="space-y-2">
+                      {plan.features.map((feature) => (
+                        <li key={feature} className="flex items-start">
+                          <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-1 shrink-0" />
+                          <span className="text-muted-foreground">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                  <CardFooter>
+                    <Button className="w-full" variant={plan.buttonVariant} asChild>
+                      <Link href="/signup">{plan.buttonText}</Link>
+                    </Button>
+                  </CardFooter>
                 </Card>
               ))}
             </div>
