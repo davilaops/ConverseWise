@@ -40,39 +40,39 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 <Button variant="default" className="w-full justify-start" asChild>
                   <Link href="/transcribe">
                     <PlusCircle />
-                    <span>New Transcription</span>
+                    <span>Nova Transcrição</span>
                   </Link>
                 </Button>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  tooltip="Dashboard"
+                  tooltip="Painel"
                   isActive={isActive('/dashboard')}
                 >
                   <Link href="/dashboard">
                     <LayoutDashboard />
-                    <span>Dashboard</span>
+                    <span>Painel</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="History" isActive={pathname.startsWith('/summaries')}>
+                <SidebarMenuButton asChild tooltip="Histórico" isActive={pathname.startsWith('/summaries')}>
                   <Link href="/dashboard">
                     <History />
-                    <span>History</span>
+                    <span>Histórico</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  tooltip="Settings"
+                  tooltip="Configurações"
                   isActive={isActive('/settings')}
                 >
                   <Link href="/settings">
                     <Settings />
-                    <span>Settings</span>
+                    <span>Configurações</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

@@ -5,6 +5,7 @@ import type { Summary } from '@/lib/types';
 import { ArrowRight, Clock, FileUp, Film, Link as LinkIcon, Mic2, PlusCircle, Share2 } from 'lucide-react';
 import Link from 'next/link';
 import { format, formatDistanceToNow } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 const sourceIcons: Record<Summary['sourceType'], React.ReactElement> = {
   'Zoom': <Mic2 className="h-5 w-5" />,
@@ -30,19 +31,19 @@ export default function DashboardPage() {
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold font-headline">Dashboard</h1>
-          <p className="text-muted-foreground">Welcome back, John! Here are your recent summaries.</p>
+          <h1 className="text-3xl font-bold font-headline">Painel</h1>
+          <p className="text-muted-foreground">Bem-vindo de volta, João! Aqui estão seus resumos recentes.</p>
         </div>
         <Button size="lg" asChild>
           <Link href="/transcribe">
             <PlusCircle className="mr-2" />
-            New Transcription
+            Nova Transcrição
           </Link>
         </Button>
       </div>
 
       <div>
-        <h2 className="text-2xl font-semibold mb-4 font-headline">Recent Summaries</h2>
+        <h2 className="text-2xl font-semibold mb-4 font-headline">Resumos Recentes</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {mockSummaries.map((summary) => (
             <Card key={summary.id} className="flex flex-col">
@@ -53,7 +54,7 @@ export default function DashboardPage() {
                     <span className="text-sm font-medium">{summary.sourceType}</span>
                   </div>
                   <time className="text-sm text-muted-foreground" dateTime={summary.date}>
-                    {formatDistanceToNow(new Date(summary.date), { addSuffix: true })}
+                    {formatDistanceToNow(new Date(summary.date), { addSuffix: true, locale: ptBR })}
                   </time>
                 </div>
                 <CardTitle className="pt-4 font-headline">{summary.title}</CardTitle>
@@ -68,7 +69,7 @@ export default function DashboardPage() {
                 </div>
                 <Button variant="ghost" size="sm" asChild>
                   <Link href={`/summaries/${summary.id}`}>
-                    View Details <ArrowRight className="ml-2 h-4 w-4" />
+                    Ver Detalhes <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </CardFooter>

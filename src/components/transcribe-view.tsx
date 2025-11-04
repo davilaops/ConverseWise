@@ -27,33 +27,33 @@ import { generateHighlightClip } from '@/ai/flows/generate-highlight-clip';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 
 // Mock data to simulate API responses for read-only mode
-const mockTranscription = `Welcome, everyone, to the Q2 marketing strategy meeting. Today, we're going to finalize our plans for the upcoming quarter. Let's start with a review of the Q1 results. Sarah, can you kick us off?
-Thanks, Tom. Q1 was a huge success. We saw a 20% increase in lead generation, largely thanks to the new blog content strategy. Our engagement on LinkedIn also grew by 15%. However, our Instagram presence has been stagnant.
-That's great news about the lead gen, Sarah. For Q2, I propose we double down on what's working. More budget for content creation. But we need to address the Instagram issue. I think we should launch a targeted ad campaign.
-I agree. We should focus our efforts on Instagram video content, specifically Reels. The data suggests that's where the growth is.
-Okay, decision made. We'll allocate an additional $10,000 to the content budget and focus our social efforts on Instagram Reels for Q2. Mark, you'll lead the ad campaign. Sarah, you'll oversee the content creation. Next steps are for Mark to present a campaign proposal by next Friday. Meeting adjourned.`;
+const mockTranscription = `Bem-vindos todos à reunião de estratégia de marketing do segundo trimestre. Hoje, vamos finalizar nossos planos para o próximo trimestre. Vamos começar com uma revisão dos resultados do primeiro trimestre. Sarah, pode começar?
+Obrigada, Tom. O primeiro trimestre foi um grande sucesso. Vimos um aumento de 20% na geração de leads, em grande parte graças à nova estratégia de conteúdo do blog. Nosso engajamento no LinkedIn também cresceu 15%. No entanto, nossa presença no Instagram está estagnada.
+Ótimas notícias sobre a geração de leads, Sarah. Para o segundo trimestre, proponho dobrarmos o que está funcionando. Mais orçamento para criação de conteúdo. Mas precisamos resolver a questão do Instagram. Acho que deveríamos lançar uma campanha de anúncios direcionada.
+Eu concordo. Devemos focar nossos esforços em conteúdo de vídeo no Instagram, especificamente Reels. Os dados sugerem que é aí que está o crescimento.
+Ok, decisão tomada. Vamos alocar R$10.000 adicionais ao orçamento de conteúdo e focar nossos esforços sociais em Reels do Instagram para o segundo trimestre. Mark, você liderará a campanha de anúncios. Sarah, você supervisionará a criação de conteúdo. Os próximos passos são para Mark apresentar uma proposta de campanha até a próxima sexta-feira. Reunião encerrada.`;
 
 const mockSummary: StructuredSummary = {
   keyPoints: [
-    'Q1 showed a 20% increase in lead generation due to the content strategy.',
-    'Instagram engagement was stagnant in Q1.',
-    'A proposal was made to increase the content creation budget.',
-    'The team decided to focus on Instagram Reels for Q2.',
+    'O 1º trimestre mostrou um aumento de 20% na geração de leads devido à estratégia de conteúdo.',
+    'O engajamento no Instagram esteve estagnado no 1º trimestre.',
+    'Foi feita uma proposta para aumentar o orçamento de criação de conteúdo.',
+    'A equipe decidiu focar nos Reels do Instagram para o 2º trimestre.',
   ],
   decisions: [
-    'An additional $10,000 will be allocated to the content budget for Q2.',
-    'Social media efforts will be concentrated on Instagram Reels.',
+    'R$10.000 adicionais serão alocados ao orçamento de conteúdo para o 2º trimestre.',
+    'Os esforços de mídia social serão concentrados nos Reels do Instagram.',
   ],
   speakerIdentification: [
-    'Tom: Meeting lead, requested review.',
-    'Sarah: Presented Q1 results, highlighted successes and weaknesses.',
-    'Mark (implied): Assigned to lead the new Instagram ad campaign.',
+    'Tom: Líder da reunião, solicitou a revisão.',
+    'Sarah: Apresentou os resultados do 1º trimestre, destacou sucessos e fraquezas.',
+    'Mark (implícito): Designado para liderar a nova campanha de anúncios do Instagram.',
   ],
   insights: [
-    'Content marketing is a strong driver of lead generation for the company.',
-    'Video content on Instagram is a key area for growth.',
+    'O marketing de conteúdo é um forte impulsionador da geração de leads para a empresa.',
+    'O conteúdo de vídeo no Instagram é uma área chave para o crescimento.',
   ],
-  nextSteps: ['Mark to present a proposal for the Instagram ad campaign by next Friday.'],
+  nextSteps: ['Mark deve apresentar uma proposta para a campanha de anúncios do Instagram até a próxima sexta-feira.'],
 };
 
 export function TranscribeView({ isReadOnly = false }: { isReadOnly?: boolean }) {
@@ -93,7 +93,7 @@ export function TranscribeView({ isReadOnly = false }: { isReadOnly?: boolean })
 
   const handleSubmit = () => {
     if (!sourceUrl && !fileName) {
-      toast({ title: 'Error', description: 'Please provide a URL or upload a file.', variant: 'destructive' });
+      toast({ title: 'Erro', description: 'Por favor, forneça uma URL ou envie um arquivo.', variant: 'destructive' });
       return;
     }
 
@@ -102,14 +102,14 @@ export function TranscribeView({ isReadOnly = false }: { isReadOnly?: boolean })
         const transcriptionResult = await transcribeContent({ sourceUrl });
         setTranscription(transcriptionResult.transcription);
 
-        toast({ title: 'Success', description: 'Transcription complete. Generating summary...' });
+        toast({ title: 'Sucesso', description: 'Transcrição completa. Gerando resumo...' });
 
         const summaryResult = await generateStructuredSummary({ transcription: transcriptionResult.transcription });
         setSummary(summaryResult.summary);
-        toast({ title: 'Success', description: 'Summary generated successfully.' });
+        toast({ title: 'Sucesso', description: 'Resumo gerado com sucesso.' });
       } catch (error) {
         console.error(error);
-        toast({ title: 'Error', description: 'An error occurred during the process.', variant: 'destructive' });
+        toast({ title: 'Erro', description: 'Ocorreu um erro durante o processo.', variant: 'destructive' });
       }
     });
   };
@@ -120,7 +120,7 @@ export function TranscribeView({ isReadOnly = false }: { isReadOnly?: boolean })
         const result = await adjustSummaryType({ transcribedText: transcription, summaryType });
         setAdjustedSummary(result.summary);
       } catch (error) {
-        toast({ title: 'Error', description: 'Failed to adjust summary.', variant: 'destructive' });
+        toast({ title: 'Erro', description: 'Falha ao ajustar o resumo.', variant: 'destructive' });
       }
     });
   };
@@ -132,12 +132,12 @@ export function TranscribeView({ isReadOnly = false }: { isReadOnly?: boolean })
             const result = await generateHighlightClip({ transcribedText: transcription, selectedText, outputType });
             // For now, we'll just toast the result
             toast({ 
-                title: `${outputType.charAt(0).toUpperCase() + outputType.slice(1)} Highlight Created`,
+                title: `Destaque de ${outputType === 'text' ? 'Texto' : 'Vídeo'} Criado`,
                 description: <p className="font-code text-xs">{result.highlight}</p>,
                 duration: 9000,
             });
         } catch (error) {
-            toast({ title: 'Error', description: 'Failed to create highlight.', variant: 'destructive' });
+            toast({ title: 'Erro', description: 'Falha ao criar destaque.', variant: 'destructive' });
         }
     });
   };
@@ -147,7 +147,7 @@ export function TranscribeView({ isReadOnly = false }: { isReadOnly?: boolean })
       {!isReadOnly && (
         <Card className="lg:col-span-1 sticky top-20">
           <CardHeader>
-            <CardTitle>Content Source</CardTitle>
+            <CardTitle>Fonte do Conteúdo</CardTitle>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="link">
@@ -161,7 +161,7 @@ export function TranscribeView({ isReadOnly = false }: { isReadOnly?: boolean })
               </TabsList>
               <TabsContent value="link" className="mt-4">
                 <div className="space-y-2">
-                  <Label htmlFor="url">Source URL</Label>
+                  <Label htmlFor="url">URL da Fonte</Label>
                   <Input
                     id="url"
                     placeholder="https://youtube.com/watch?v=..."
@@ -172,17 +172,17 @@ export function TranscribeView({ isReadOnly = false }: { isReadOnly?: boolean })
               </TabsContent>
               <TabsContent value="upload" className="mt-4">
                 <div className="space-y-2">
-                  <Label htmlFor="file-upload">Audio or Video File</Label>
+                  <Label htmlFor="file-upload">Arquivo de Áudio ou Vídeo</Label>
                   <Input id="file-upload" type="file" onChange={(e) => setFileName(e.target.files?.[0].name || '')} />
-                  {fileName && <p className="text-sm text-muted-foreground">Selected: {fileName}</p>}
+                  {fileName && <p className="text-sm text-muted-foreground">Selecionado: {fileName}</p>}
                 </div>
               </TabsContent>
             </Tabs>
             <Button onClick={handleSubmit} disabled={isPending} className="w-full mt-6">
               {isPending ? (
-                <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Processing...</>
+                <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Processando...</>
               ) : (
-                'Transcribe & Summarize'
+                'Transcrever e Resumir'
               )}
             </Button>
           </CardContent>
@@ -193,8 +193,8 @@ export function TranscribeView({ isReadOnly = false }: { isReadOnly?: boolean })
         {isPending && !transcription && (
           <div className="flex flex-col items-center justify-center h-96 border-2 border-dashed rounded-lg">
             <Loader2 className="h-12 w-12 animate-spin text-primary mb-4" />
-            <p className="text-lg font-semibold">Processing your content...</p>
-            <p className="text-muted-foreground">This may take a few moments.</p>
+            <p className="text-lg font-semibold">Processando seu conteúdo...</p>
+            <p className="text-muted-foreground">Isso pode levar alguns instantes.</p>
           </div>
         )}
 
@@ -202,51 +202,61 @@ export function TranscribeView({ isReadOnly = false }: { isReadOnly?: boolean })
           <Tabs defaultValue="summary">
             <div className="flex items-center justify-between mb-4">
               <TabsList>
-                <TabsTrigger value="summary">Summary</TabsTrigger>
-                <TabsTrigger value="transcription">Transcription</TabsTrigger>
+                <TabsTrigger value="summary">Resumo</TabsTrigger>
+                <TabsTrigger value="transcription">Transcrição</TabsTrigger>
               </TabsList>
               <div className="flex items-center gap-2">
                 <Button variant="outline" size="sm"><Download className="mr-2" /> DOCX</Button>
                 <Button variant="outline" size="sm"><FileText className="mr-2" /> PDF</Button>
-                <Button variant="outline" size="sm"><Share2 className="mr-2" /> Share</Button>
+                <Button variant="outline" size="sm"><Share2 className="mr-2" /> Compartilhar</Button>
               </div>
             </div>
 
             <TabsContent value="summary">
               <Card>
                 <CardHeader>
-                  <CardTitle>AI Generated Summary</CardTitle>
+                  <CardTitle>Resumo Gerado por IA</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Tabs defaultValue="structured" className="w-full">
                     <TabsList>
-                      <TabsTrigger value="structured">Structured</TabsTrigger>
-                      <TabsTrigger value="quick" onClick={() => handleAdjustSummary('quick')}>Quick</TabsTrigger>
-                      <TabsTrigger value="complete" onClick={() => handleAdjustSummary('complete')}>Complete</TabsTrigger>
-                      <TabsTrigger value="executive" onClick={() => handleAdjustSummary('executive')}>Executive</TabsTrigger>
+                      <TabsTrigger value="structured">Estruturado</TabsTrigger>
+                      <TabsTrigger value="quick" onClick={() => handleAdjustSummary('quick')}>Rápido</TabsTrigger>
+                      <TabsTrigger value="complete" onClick={() => handleAdjustSummary('complete')}>Completo</TabsTrigger>
+                      <TabsTrigger value="executive" onClick={() => handleAdjustSummary('executive')}>Executivo</TabsTrigger>
                     </TabsList>
                     <TabsContent value="structured" className="mt-4">
                       {summary ? (
                         <div className="space-y-4">
                           {Object.entries(summary).map(([key, value]) => (
                             <div key={key}>
-                              <h3 className="font-semibold text-lg mb-2 capitalize font-headline">{key.replace(/([A-Z])/g, ' $1').trim()}</h3>
+                              <h3 className="font-semibold text-lg mb-2 capitalize font-headline">
+                                {
+                                  {
+                                    keyPoints: 'Pontos-Chave',
+                                    decisions: 'Decisões',
+                                    speakerIdentification: 'Identificação dos Oradores',
+                                    insights: 'Insights',
+                                    nextSteps: 'Próximos Passos'
+                                  }[key] || key.replace(/([A-Z])/g, ' $1').trim()
+                                }
+                              </h3>
                               <ul className="space-y-2 list-disc pl-5 text-muted-foreground">
                                 {Array.isArray(value) && value.map((item, i) => <li key={i}>{item}</li>)}
                               </ul>
                             </div>
                           ))}
                         </div>
-                      ) : <p>Loading summary...</p>}
+                      ) : <p>Carregando resumo...</p>}
                     </TabsContent>
                      <TabsContent value="quick" className="mt-4">
-                       <p className="text-muted-foreground whitespace-pre-wrap">{adjustedSummary || "Click tab to generate..."}</p>
+                       <p className="text-muted-foreground whitespace-pre-wrap">{adjustedSummary || "Clique na aba para gerar..."}</p>
                      </TabsContent>
                      <TabsContent value="complete" className="mt-4">
-                       <p className="text-muted-foreground whitespace-pre-wrap">{adjustedSummary || "Click tab to generate..."}</p>
+                       <p className="text-muted-foreground whitespace-pre-wrap">{adjustedSummary || "Clique na aba para gerar..."}</p>
                      </TabsContent>
                      <TabsContent value="executive" className="mt-4">
-                       <p className="text-muted-foreground whitespace-pre-wrap">{adjustedSummary || "Click tab to generate..."}</p>
+                       <p className="text-muted-foreground whitespace-pre-wrap">{adjustedSummary || "Clique na aba para gerar..."}</p>
                      </TabsContent>
                   </Tabs>
                 </CardContent>
@@ -257,27 +267,27 @@ export function TranscribeView({ isReadOnly = false }: { isReadOnly?: boolean })
               <Card>
                 <CardHeader>
                     <div className='flex justify-between items-center'>
-                      <CardTitle>Full Transcription</CardTitle>
+                      <CardTitle>Transcrição Completa</CardTitle>
                       <Button variant="ghost" size="sm" onClick={() => {
                         navigator.clipboard.writeText(transcription);
-                        toast({title: "Copied to clipboard!"})
-                      }}><Copy className="mr-2" /> Copy</Button>
+                        toast({title: "Copiado para a área de transferência!"})
+                      }}><Copy className="mr-2" /> Copiar</Button>
                     </div>
                 </CardHeader>
                 <CardContent>
                   <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
                       <PopoverTrigger asChild>
                           <div ref={transcriptionRef} className="text-muted-foreground whitespace-pre-wrap leading-relaxed max-h-[60vh] overflow-y-auto p-2 rounded-md bg-secondary/50 selection:bg-primary/30" onMouseUp={handleTextSelection}>
-                              {transcription || 'Transcription will appear here.'}
+                              {transcription || 'A transcrição aparecerá aqui.'}
                           </div>
                       </PopoverTrigger>
                       <PopoverContent className='w-auto p-1'>
                         <div className='flex items-center gap-1'>
                             <Button variant="ghost" size="sm" onClick={() => handleCreateHighlight('text')}>
-                                <Sparkles className='mr-2 h-4 w-4'/> Text Highlight
+                                <Sparkles className='mr-2 h-4 w-4'/> Destaque de Texto
                             </Button>
                             <Button variant="ghost" size="sm" onClick={() => handleCreateHighlight('video')}>
-                                <Scissors className='mr-2 h-4 w-4'/> Video Clip
+                                <Scissors className='mr-2 h-4 w-4'/> Clipe de Vídeo
                             </Button>
                         </div>
                       </PopoverContent>

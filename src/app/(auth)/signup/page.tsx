@@ -21,36 +21,36 @@ export default function SignupPage() {
         </div>
         <Card>
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-headline">Create an Account</CardTitle>
+            <CardTitle className="text-2xl font-headline">Crie uma Conta</CardTitle>
             <CardDescription>
-              Start your journey with ConversaWise today.
+              Comece sua jornada com o ConversaWise hoje.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="john.doe@example.com" />
+              <Input id="email" type="email" placeholder="joao.silva@exemplo.com" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Senha</Label>
               <Input id="password" type="password" />
             </div>
              <div className="space-y-2">
-              <Label htmlFor="confirm-password">Confirm Password</Label>
+              <Label htmlFor="confirm-password">Confirmar Senha</Label>
               <Input id="confirm-password" type="password" />
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
             <Button className="w-full" asChild>
-                <Link href="/dashboard">Create Account</Link>
+                <Link href="/dashboard">Criar Conta</Link>
             </Button>
             <Button variant="outline" className="w-full">
-              Sign up with Google
+              Cadastre-se com Google
             </Button>
             <p className="text-sm text-center text-muted-foreground">
-              Already have an account?{' '}
+              Já tem uma conta?{' '}
               <Link href="/login" className="text-primary hover:underline font-medium">
-                Log In
+                Entrar
               </Link>
             </p>
           </CardFooter>

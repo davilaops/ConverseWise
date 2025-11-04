@@ -39,9 +39,9 @@ export function UserNav() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">John Doe</p>
+            <p className="text-sm font-medium leading-none">João da Silva</p>
             <p className="text-xs leading-none text-muted-foreground">
-              john.doe@example.com
+              joao.silva@exemplo.com
             </p>
           </div>
         </DropdownMenuLabel>
@@ -50,19 +50,19 @@ export function UserNav() {
           <DropdownMenuItem asChild>
             <Link href="/settings">
               <User className="mr-2" />
-              <span>Profile</span>
+              <span>Perfil</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link href="/settings">
               <CreditCard className="mr-2" />
-              <span>Billing</span>
+              <span>Faturamento</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link href="/settings">
               <Settings className="mr-2" />
-              <span>Settings</span>
+              <span>Configurações</span>
             </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
@@ -70,7 +70,7 @@ export function UserNav() {
         <DropdownMenuItem asChild>
           <Link href="/login">
             <LogOut className="mr-2" />
-            <span>Log out</span>
+            <span>Sair</span>
           </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>

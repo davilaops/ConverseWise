@@ -21,24 +21,24 @@ export default function LoginPage() {
         </div>
         <Card>
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-headline">Welcome Back</CardTitle>
+            <CardTitle className="text-2xl font-headline">Bem-vindo de Volta</CardTitle>
             <CardDescription>
-              Enter your credentials to access your account.
+              Insira suas credenciais para acessar sua conta.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="john.doe@example.com" />
+              <Input id="email" type="email" placeholder="joao.silva@exemplo.com" />
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Senha</Label>
                 <Link
                   href="#"
                   className="text-sm text-primary hover:underline"
                 >
-                  Forgot password?
+                  Esqueceu a senha?
                 </Link>
               </div>
               <Input id="password" type="password" />
@@ -46,16 +46,16 @@ export default function LoginPage() {
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
             <Button className="w-full" asChild>
-              <Link href="/dashboard">Log In</Link>
+              <Link href="/dashboard">Entrar</Link>
             </Button>
             <Button variant="outline" className="w-full">
               {/* Add Google Icon SVG here */}
-              Log in with Google
+              Entrar com Google
             </Button>
             <p className="text-sm text-center text-muted-foreground">
-              Don't have an account?{' '}
+              Não tem uma conta?{' '}
               <Link href="/signup" className="text-primary hover:underline font-medium">
-                Sign Up
+                Cadastre-se
               </Link>
             </p>
           </CardFooter>

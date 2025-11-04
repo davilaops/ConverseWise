@@ -7,23 +7,23 @@ import { Logo } from '@/components/logo';
 const features = [
   {
     icon: <Sparkles className="h-8 w-8 text-primary" />,
-    title: 'AI-Powered Transcription',
-    description: 'Accurately transcribe audio and video from any source into text.',
+    title: 'Transcrição com IA',
+    description: 'Transcreva com precisão áudio e vídeo de qualquer fonte em texto.',
   },
   {
     icon: <Film className="h-8 w-8 text-primary" />,
-    title: 'Intelligent Summarization',
-    description: 'Get structured summaries with key points, decisions, and next steps.',
+    title: 'Resumos Inteligentes',
+    description: 'Obtenha resumos estruturados com pontos-chave, decisões e próximos passos.',
   },
   {
     icon: <Languages className="h-8 w-8 text-primary" />,
-    title: 'Multilingual Support',
-    description: 'Automatic language detection for seamless transcription in English & Portuguese.',
+    title: 'Suporte Multilíngue',
+    description: 'Detecção automática de idioma para transcrição perfeita em inglês e português.',
   },
   {
     icon: <Share2 className="h-8 w-8 text-primary" />,
-    title: 'Export & Share',
-    description: 'Easily export your summaries to PDF, DOCX and share via multiple channels.',
+    title: 'Exporte e Compartilhe',
+    description: 'Exporte facilmente seus resumos para PDF, DOCX e compartilhe por vários canais.',
   },
 ];
 
@@ -34,10 +34,10 @@ export default function LandingPage() {
         <Logo />
         <nav className="flex items-center gap-4">
           <Button variant="ghost" asChild>
-            <Link href="/login">Log In</Link>
+            <Link href="/login">Entrar</Link>
           </Button>
           <Button asChild>
-            <Link href="/signup">Get Started Free</Link>
+            <Link href="/signup">Comece Grátis</Link>
           </Button>
         </nav>
       </header>
@@ -46,13 +46,13 @@ export default function LandingPage() {
         <section className="text-center py-20 lg:py-32">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 font-headline">
-              Unlock Insights from Your Conversations
+              Desbloqueie Insights de Suas Conversas
             </h1>
             <p className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground mb-8">
-              ConversaWise uses AI to transcribe, summarize, and analyze your audio and video content, turning long meetings and calls into actionable intelligence.
+              O ConversaWise usa IA para transcrever, resumir e analisar seu conteúdo de áudio e vídeo, transformando longas reuniões e chamadas em inteligência acionável.
             </p>
             <Button size="lg" asChild>
-              <Link href="/signup">Start Your Free Trial</Link>
+              <Link href="/signup">Inicie seu Teste Gratuito</Link>
             </Button>
           </div>
         </section>
@@ -60,9 +60,9 @@ export default function LandingPage() {
         <section id="features" className="py-20 lg:py-24 bg-secondary">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold font-headline">Powerful Features, Simply Delivered</h2>
+              <h2 className="text-3xl md:text-4xl font-bold font-headline">Recursos Poderosos, Entregues com Simplicidade</h2>
               <p className="max-w-xl mx-auto text-muted-foreground mt-2">
-                Everything you need to be more productive.
+                Tudo o que você precisa para ser mais produtivo.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -86,12 +86,12 @@ export default function LandingPage() {
         <section className="py-20 lg:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-3xl md:text-4xl font-bold font-headline">Ready to Boost Your Productivity?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold font-headline">Pronto para Aumentar sua Produtividade?</h2>
               <p className="max-w-xl mx-auto text-muted-foreground mt-2 mb-8">
-                Join thousands of users who trust ConversaWise to make sense of their audio and video content.
+                Junte-se a milhares de usuários que confiam no ConversaWise para extrair sentido de seu conteúdo de áudio e vídeo.
               </p>
               <Button size="lg" asChild>
-                <Link href="/signup">Sign Up Now</Link>
+                <Link href="/signup">Cadastre-se Agora</Link>
               </Button>
             </div>
           </div>
@@ -100,7 +100,7 @@ export default function LandingPage() {
 
       <footer className="py-8 bg-secondary/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} ConversaWise. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} ConversaWise. Todos os direitos reservados.</p>
         </div>
       </footer>
     </div>

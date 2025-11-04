@@ -7,8 +7,8 @@ export default function SummaryDetailPage({ params }: { params: { id: string } }
   return (
     <div className="space-y-8">
        <div>
-        <h1 className="text-3xl font-bold font-headline">Transcription Details</h1>
-        <p className="text-muted-foreground">Viewing summary ID: {params.id}</p>
+        <h1 className="text-3xl font-bold font-headline">Detalhes da Transcrição</h1>
+        <p className="text-muted-foreground">Visualizando resumo ID: {params.id}</p>
       </div>
       <TranscribeView isReadOnly={true} />
     </div>
