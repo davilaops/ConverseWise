@@ -1,0 +1,16 @@
+# Configurações para a Netlify
+[build]
+  # Comando para construir seu site Next.js
+  command = "npm run build"
+  # Diretório que a Netlify irá implantar
+  publish = "out"
+
+[build.environment]
+  # Desativa a telemetria do Next.js durante a construção
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Redirecionamentos e reescritas para lidar com o roteamento do Next.js
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
