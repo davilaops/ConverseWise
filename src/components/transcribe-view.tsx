@@ -115,12 +115,15 @@ export function TranscribeView({ isReadOnly = false }: { isReadOnly?: boolean })
   };
 
   const handleAdjustSummary = (summaryType: 'quick' | 'complete' | 'executive') => {
+    if (!transcription) return;
+    setAdjustedSummary('Gerando...');
     startTransition(async () => {
       try {
         const result = await adjustSummaryType({ transcribedText: transcription, summaryType });
         setAdjustedSummary(result.summary);
       } catch (error) {
         toast({ title: 'Erro', description: 'Falha ao ajustar o resumo.', variant: 'destructive' });
+        setAdjustedSummary('');
       }
     });
   };
@@ -141,6 +144,44 @@ export function TranscribeView({ isReadOnly = false }: { isReadOnly?: boolean })
         }
     });
   };
+
+  const downloadAsTxt = (content: string, filename: string) => {
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${filename}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleDownloadSummary = () => {
+    let content = 'Resumo não disponível.';
+    if(summary) {
+        content = Object.entries(summary)
+            .map(([key, value]) => {
+                const title = {
+                    keyPoints: 'Pontos-Chave',
+                    decisions: 'Decisões',
+                    speakerIdentification: 'Identificação dos Oradores',
+                    insights: 'Insights',
+                    nextSteps: 'Próximos Passos'
+                }[key] || key.replace(/([A-Z])/g, ' $1').trim();
+                
+                const items = Array.isArray(value) ? value.map(item => `- ${item}`).join('\n') : '';
+                return `${title}:\n${items}\n`;
+            })
+            .join('\n');
+    }
+    downloadAsTxt(content, 'resumo');
+  };
+
+  const handleDownloadTranscription = () => {
+    downloadAsTxt(transcription, 'transcricao');
+  };
+
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
@@ -199,15 +240,23 @@ export function TranscribeView({ isReadOnly = false }: { isReadOnly?: boolean })
         )}
 
         {(transcription || summary) && (
-          <Tabs defaultValue="summary">
+          <Tabs defaultValue="summary" id="results-tabs">
             <div className="flex items-center justify-between mb-4">
               <TabsList>
                 <TabsTrigger value="summary">Resumo</TabsTrigger>
                 <TabsTrigger value="transcription">Transcrição</TabsTrigger>
               </TabsList>
               <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm"><Download className="mr-2" /> DOCX</Button>
-                <Button variant="outline" size="sm"><FileText className="mr-2" /> PDF</Button>
+                <Button variant="outline" size="sm" onClick={() => {
+                  const activeTab = document.querySelector('#results-tabs > [data-state="active"]')?.getAttribute('data-value');
+                  if (activeTab === 'summary') {
+                    handleDownloadSummary();
+                  } else {
+                    handleDownloadTranscription();
+                  }
+                }}>
+                  <Download className="mr-2" /> Baixar .txt
+                </Button>
                 <Button variant="outline" size="sm"><Share2 className="mr-2" /> Compartilhar</Button>
               </div>
             </div>
